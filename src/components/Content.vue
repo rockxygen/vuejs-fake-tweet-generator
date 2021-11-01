@@ -5,10 +5,10 @@
           <img :src="tweet.avatar || 'https://pbs.twimg.com/profile_images/641920828599308288/SZzalxYP_x96.jpg'" alt="">
           <div>
             <div class="name">
-              <span>{{ tweet.name || 'Name Surname' }}</span>
+              <span>{{ tweet.name || 'Ad Soyad' }}</span>
               <img src="../assets/verified.svg" alt="" v-if="tweet.isVerifeid">
             </div>
-            <div class="username">@{{ tweet.username || 'Username' }}</div>
+            <div class="username">@{{ tweet.username || 'Kullanıcı Adı' }}</div>
           </div>
         </div>
         <div class="content">
