@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Sidebar :tweet="fake" @changeAvatar="setAvatar($event)" />
+    <Sidebar :tweet="fake" @changeAvatar="setAvatar($event)" @handleImage="setImage($event)" />
     <Tweet :tweet="fake" @getData="fetchData($event)" />
   </div>
 </template>
@@ -20,6 +20,7 @@ export default {
         isVerifeid: false,
         tweet: '',
         avatar: '',
+        image: '',
         stats: {
           retweet: 0,
           quotes: 0,
@@ -35,6 +36,9 @@ export default {
   methods: {
     setAvatar(e){
       this.fake.avatar = e;
+    },
+    setImage(e){
+      this.fake.image = e;
     },
     convertImgToBase64(url, callback, outputFormat){
       var canvas = document.createElement('CANVAS');

@@ -17,6 +17,7 @@
         </div>
         <div class="content">
           <p v-html="$options.filters.tweetFormat(tweet.tweet || 'Tweet')"></p>
+          <img v-if="tweet.image" :src="tweet.image" width="auto" alt="">
         </div>
         <div class="stats">
           <span>
@@ -160,6 +161,14 @@ export default {
 
 .content {
   padding: 12px 0;
+  position: relative;
+}
+
+.content img {
+  margin-top: 10px;
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 5px;
 }
 
 .content p {

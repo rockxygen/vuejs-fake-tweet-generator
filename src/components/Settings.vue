@@ -28,6 +28,10 @@
           <textarea cols="30" rows="5" class="input" v-model="tweet.tweet" maxlength="290"></textarea>
         </li>
         <li>
+          <label>Tweet Image</label>
+          <input type="file" class="input" @change="imageHandle($event)">
+        </li>
+        <li>
           <label>Retweet</label>
           <input type="number" class="input" value="0" v-model="tweet.stats.retweet">
         </li>
@@ -58,7 +62,14 @@ export default {
       const reader = new FileReader();
       reader.addEventListener('load', function() {
         vm.$emit('changeAvatar', this.result);
-        console.log(this.result);
+      });
+      reader.readAsDataURL(e.target.files[0]);
+    },
+    imageHandle(e){
+      const vm = this;
+      const reader = new FileReader();
+      reader.addEventListener('load', function() {
+        vm.$emit('handleImage', this.result);
       });
       reader.readAsDataURL(e.target.files[0]);
     },
