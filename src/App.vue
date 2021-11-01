@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Sidebar :tweet="fake" @changeAvatar="setAvatar($event)" @canvasChange="setCanvas($event)" />
+    <Sidebar :tweet="fake" @changeAvatar="setAvatar($event)" />
     <Tweet :tweet="fake" @getData="fetchData($event)" />
   </div>
 </template>
@@ -24,8 +24,7 @@ export default {
           retweet: 0,
           quotes: 0,
           likes: 0
-        },
-        tweetOutImage: ''
+        }
       }
     }
   },
@@ -36,9 +35,6 @@ export default {
   methods: {
     setAvatar(e){
       this.fake.avatar = e;
-    },
-    setCanvas(e){
-      this.fake.tweetOutImage = e;
     },
     convertImgToBase64(url, callback, outputFormat){
       var canvas = document.createElement('CANVAS');

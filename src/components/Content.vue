@@ -6,7 +6,7 @@
       </div>
       <div class="tweet" ref="getImage">
         <div class="author">
-          <img :src="tweet.avatar || 'https://pbs.twimg.com/profile_images/641920828599308288/SZzalxYP_x96.jpg'" alt="">
+          <img :src="tweet.avatar || 'https://img2.pngindir.com/20180402/ojw/kisspng-united-states-avatar-organization-information-user-avatar-5ac20804a62b58.8673620215226654766806.jpg'" alt="">
           <div>
             <div class="name">
               <span>{{ tweet.name || 'Ad Soyad' }}</span>
