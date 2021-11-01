@@ -1,5 +1,9 @@
 <template>
     <div class="fake-tweet">
+      <div class="search-console">
+        <input type="text" v-model="tweet.username" placeholder="Twitter Kullanıcı Adı">
+        <button @click="getUserData(tweet.username)">Son Tweet'i Çek</button>
+      </div>
       <div class="tweet" ref="getImage">
         <div class="author">
           <img :src="tweet.avatar || 'https://pbs.twimg.com/profile_images/641920828599308288/SZzalxYP_x96.jpg'" alt="">
@@ -48,6 +52,15 @@ export default {
   props: {
     tweet: [Object]
   },
+  methods: {
+    getUserData(e){
+      if(e) {
+        this.$emit('getData', e);
+        return;
+      }
+      alert('Twitter kullanıcı adını yazınız!');
+    }
+  },
   filters: {
     numberFormat(number) {
       if (number >= 1000000000) {
@@ -75,6 +88,33 @@ export default {
 <style scoped>
 .fake-tweet {
   flex: 1;
+}
+
+.search-console {
+  width: 600px;
+  margin: 0 auto;
+  display: flex;
+}
+
+.search-console input {
+  flex: 1;
+  background: #2f3336;
+  height: 40px;
+  line-height: 40px;
+  border-radius: 3px 0 0 3px;
+  color: #fff;
+  padding: 0 15px;
+  font-size: 15px;
+}
+
+.search-console button {
+  height: 40px;
+  padding: 0 20px;
+  font-size: 15px;
+  background: #1da1f2;
+  color: #fff;
+  border-radius: 0 3px 3px 0;
+  cursor: pointer;
 }
 
 .tweet {

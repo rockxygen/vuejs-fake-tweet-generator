@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Sidebar :tweet="fake" @changeAvatar="setAvatar($event)" @canvasChange="setCanvas($event)" />
-    <Tweet :tweet="fake" />
+    <Tweet :tweet="fake" @getData="fetchData($event)" />
   </div>
 </template>
 
@@ -38,6 +38,47 @@ export default {
     },
     setCanvas(e){
       this.fake.tweetOutImage = e;
+    },
+    convertImgToBase64(url, callback, outputFormat){
+      var canvas = document.createElement('CANVAS');
+      var ctx = canvas.getContext('2d');
+      var img = new Image();
+      img.crossOrigin = 'Anonymous';
+      img.onload = function() {
+        canvas.height = img.height;
+        canvas.width = img.width;
+        ctx.drawImage(img, 0, 0);
+        var dataURL = canvas.toDataURL(outputFormat || 'image/png');
+        callback.call(this, dataURL);
+        canvas = null;
+      };
+      img.src = url;
+    },
+    fetchData(username){
+      fetch(`https://typeahead-js-twitter-api-proxy.herokuapp.com/demo/search?q=${username}`)
+      .then(res => res.json())
+      .then(data => {
+        const twitter = data[0];
+        const vm = this;
+
+        this.convertImgToBase64(twitter.profile_image_url_https, function(base64Image){
+          vm.fake.avatar = base64Image;
+        });
+
+        this.fake = {
+          name: twitter.name,
+          username: twitter.screen_name,
+          tweet: twitter.status.text,
+          avatar: vm.fake.avatar,
+          stats: {
+            retweet: twitter.status.retweet_count,
+            quotes: 0,
+            likes: twitter.status.favorite_count
+          }
+        }
+
+      })
+      .catch(err => console.log(err));
     }
   }
 }

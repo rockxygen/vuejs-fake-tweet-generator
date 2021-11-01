@@ -58,6 +58,7 @@ export default {
       const reader = new FileReader();
       reader.addEventListener('load', function() {
         vm.$emit('changeAvatar', this.result);
+        console.log(this.result);
       });
       reader.readAsDataURL(e.target.files[0]);
     },
@@ -67,7 +68,6 @@ export default {
         type: 'dataURL'
       }
       const tweetImage = await this.$html2canvas(image, options);
-      // this.$emit('canvasChange', tweetImage);
 
       this.$refs.downloadLink.href = tweetImage;
 
