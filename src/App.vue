@@ -11,6 +11,7 @@ import Tweet from './components/Content';
 
 export default {
   name: 'App',
+  title: 'VueJS Fake Tweet Generator',
   data(){
     return {
       fake: {
