@@ -21,4 +21,4 @@ npm run lint
 ```
 
 ### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+See the [DEMO](https://fake-tweet-generator-vuejs.netlify.app/).
