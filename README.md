@@ -20,5 +20,4 @@ npm run build
 npm run lint
 ```
 
-### Customize configuration
 See the [DEMO](https://fake-tweet-generator-vuejs.netlify.app/).
