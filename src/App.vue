@@ -71,6 +71,7 @@ export default {
           username: twitter.screen_name,
           tweet: twitter.status.text,
           avatar: vm.fake.avatar,
+          image: '',
           stats: {
             retweet: twitter.status.retweet_count,
             quotes: 0,
