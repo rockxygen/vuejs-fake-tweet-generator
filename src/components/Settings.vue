@@ -29,7 +29,8 @@
         </li>
         <li>
           <label>Tweet Image</label>
-          <input type="file" class="input" @change="imageHandle($event)">
+          <input type="file" class="input" @change="imageHandle($event)" ref="tweetImage">
+          <a v-if="tweet.image" href="#" @click="removeImage">Image Sil</a>
         </li>
         <li>
           <label>Retweet</label>
@@ -72,6 +73,10 @@ export default {
         vm.$emit('handleImage', this.result);
       });
       reader.readAsDataURL(e.target.files[0]);
+    },
+    removeImage(){
+      this.tweet.image = '';
+      this.$refs.tweetImage.value = '';
     },
     async createTweet(){
       const image = document.querySelector('.tweet');
