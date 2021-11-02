@@ -69,18 +69,35 @@ export default {
         this.fake = {
           name: twitter.name,
           username: twitter.screen_name,
-          tweet: twitter.status.text,
+          isVerifeid: twitter.verified,
+          tweet: '',
           avatar: vm.fake.avatar,
           image: '',
           stats: {
+            retweet: 0,
+            quotes: 0,
+            likes: 0
+          }
+        }
+
+        if(twitter.status){
+          this.fake.tweet = twitter.status.text;
+          this.fake.stats = {
             retweet: twitter.status.retweet_count,
             quotes: 0,
             likes: twitter.status.favorite_count
           }
+          if(twitter.status.entities.media){
+            console.log(twitter.status.entities.media[0].media_url);
+            this.convertImgToBase64(twitter.status.entities.media[0].media_url, function(base64Image){
+              vm.fake.image = base64Image;
+            });
+            this.fake.image = vm.fake.image;
+          }
         }
 
       })
-      .catch(err => console.log(err));
+      .catch(err => alert(err));
     }
   }
 }
